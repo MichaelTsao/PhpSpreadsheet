@@ -482,7 +482,7 @@ class Xlsx extends BaseReader
                     $xpath = self::getArrayItem($relsWorkbook->xpath("rel:Relationship[@Type='http://schemas.openxmlformats.org/officeDocument/2006/relationships/sharedStrings']"));
                     $xmlStrings = simplexml_load_string(
                         //~ http://schemas.openxmlformats.org/spreadsheetml/2006/main"
-                        $this->securityScan($this->getFromZipArchive($zip, "$dir/$xpath[Target]")),
+                        iconv("UTF-8", "UTF-8//IGNORE", $this->securityScan($this->getFromZipArchive($zip, "$dir/$xpath[Target]"))),
                         'SimpleXMLElement',
                         Settings::getLibXmlLoaderOptions() | LIBXML_COMPACT | LIBXML_PARSEHUGE
                     );
